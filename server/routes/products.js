@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
 })
 
 // get single product
-router.get('/:id', function (req, res) {
-    res.send(req.params.id)
+router.get('/:id', findProduct, (req, res) => {
+    res.send(res.product)
 })
 
 // add new product
@@ -45,8 +45,27 @@ router.patch('/:id', function (req, res) {
 })
 
 // delete product
-router.delete('/:id', function (req, res) {
-
+router.delete('/:id', findProduct, async (req, res) => {
+    try {
+        await res.product.remove()
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
+
+// middleware function that searches for a specific product in db
+async function findProduct(req, res, next){
+    let product
+    try {
+        product = await Product.findById(req.params.id)
+        if (product == null) {
+            return res.status(404).json({ message: "Product doesn't exist" })
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+    res.product = product
+    next()
+}
 
 module.exports = router

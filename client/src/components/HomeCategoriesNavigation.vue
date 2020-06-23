@@ -5,7 +5,13 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+
+export default {
+  computed: {
+    ...mapState(["categories"])
+  }
+};
 </script>
 
 <style>

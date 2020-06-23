@@ -9,12 +9,15 @@ app.use(bodyParser.json())
 
 // connect to database via mongoose
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', () => console.log("Connected to DB!"))
 
 // routes
 const productsRouter = require('./routes/products')
+const categoriesRouter = require('./routes/categories')
+
 app.use('/products', productsRouter)
+app.use('/categories', categoriesRouter)
 
 app.listen(3000, () => console.log('Server started')) 

@@ -1,6 +1,7 @@
 import axios from "axios"
 
 const categories = {
+    namespaced: true,
     state: {
         categories: []
     },
@@ -11,14 +12,11 @@ const categories = {
     },
     actions: {
         loadCategories({commit}){
-            axios 
-                .get('http://localhost:3000/categories/')
-                .then(res => {
-                    commit('SET_CATEGORIES', res.data)
-                    console.log(res)
-                })
+            axios  
+                .get('http://localhost:3000/categories')
+                .then(res => { commit('SET_CATEGORIES', res.data) })
                 .catch(err => console.log(err))
-        }
+        },
     }
 }
 

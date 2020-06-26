@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="products-container">
     <h1>Products</h1>
   </div>
 </template>
@@ -8,5 +8,9 @@
 export default {};
 </script>
 
-<style>
+<style lang="scss">
+.products-container {
+  display: flex;
+  flex: 0 68%;
+}
 </style>

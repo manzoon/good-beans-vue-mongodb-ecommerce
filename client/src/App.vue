@@ -15,5 +15,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "./scss/_reset.scss";
+@import "./scss/_imports.scss";
+@import "./scss/_variables.scss";
+@import "./scss/_setup.scss";
+@import "./scss/_breakpoints.scss";
+
+#app {
+  height: 100%;
+}
 </style>

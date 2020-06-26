@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const cors = require('cors')
+
 
 // create express app and use configuration from dotenv
 const app = express()
@@ -16,6 +18,8 @@ db.once('open', () => console.log("Connected to DB!"))
 // routes
 const productsRouter = require('./routes/products')
 const categoriesRouter = require('./routes/categories')
+
+app.use('cors')
 
 app.use('/products', productsRouter)
 app.use('/categories', categoriesRouter)

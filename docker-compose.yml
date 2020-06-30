@@ -5,6 +5,8 @@ services:
      build: ./client
      ports:
        - "8080:8080"
+     networks:
+       - local
 
    server:
      depends_on:
@@ -15,9 +17,15 @@ services:
       DB_URL: mongodb://db/good-beans-db
      ports:
        - "3000:3000"
+     networks:
+       - local
    db:
      image: mongo:4
      volumes:
        - db_data:/data/db
 volumes:
     db_data: {}
+
+networks:
+  local:
+    driver: bridge
